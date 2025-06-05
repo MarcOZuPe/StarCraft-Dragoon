@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc95e48754b64ce4c82ef254227e3aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectionBox: {fileID: 128401794}
 --- !u!114 &105496849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,8 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6665388c8214524cb5b75b25b5571b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectionBox: {fileID: 128401794}
   cam: {fileID: 519420031}
+  selectionBox: {fileID: 0}
 --- !u!4 &105496850
 Transform:
   m_ObjectHideFlags: 0
@@ -189,6 +190,7 @@ GameObject:
   - component: {fileID: 128401794}
   - component: {fileID: 128401796}
   - component: {fileID: 128401795}
+  - component: {fileID: 128401797}
   m_Layer: 5
   m_Name: SelectionBox
   m_TagString: Untagged
@@ -228,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.050980393, g: 0.15770023, b: 0.15770023, a: 0.14117648}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -253,6 +255,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128401793}
   m_CullTransparentMesh: 1
+--- !u!114 &128401797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128401793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.15922391, g: 0.78867924, b: 0.21940802, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 0
 --- !u!1 &166940531
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,8 +943,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1721217829}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0003, y: -0.483, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.00029993057, y: -0.48300004, z: 0}
   m_LocalScale: {x: 1.2165, y: 0.3171, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

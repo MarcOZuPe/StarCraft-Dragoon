@@ -4,9 +4,11 @@ using System.Collections.Generic;
 
 public class UnitSelectionBox : MonoBehaviour
 {
-    [SerializeField] private RectTransform selectionBox; // arrástralo desde la UI  
-    private Vector2 startPos;
-    private Vector2 endPos;
+    [SerializeField] private RectTransform selectionBox;
+
+    private Vector2 mouseStartPos;
+    private bool isMouseDown = false;
+    private bool isDragging = false;
 
     public List<Unit> SelectedUnits { get; private set; } = new List<Unit>();
 
@@ -14,37 +16,88 @@ public class UnitSelectionBox : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            startPos = Input.mousePosition;
-            selectionBox.gameObject.SetActive(true);
+            mouseStartPos = Input.mousePosition;
+            isMouseDown = true;
+            isDragging = false;
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                Unit unit = hit.collider.GetComponent<Unit>();
+                if (unit != null)
+                {
+                    // Deselecciona todo lo que estaba seleccionado
+                    foreach (var u in SelectedUnits)
+                        u.SetSelected(false);
+                    SelectedUnits.Clear();
+
+                    // Selecciona la unidad clickeada
+                    SelectedUnits.Add(unit);
+                    unit.SetSelected(true);
+                }
+                else
+                {
+                    // Clic en vacío, deselecciona todo
+                    foreach (var u in SelectedUnits)
+                        u.SetSelected(false);
+                    SelectedUnits.Clear();
+                }
+            }
+            else
+            {
+                
+                foreach (var u in SelectedUnits)
+                    u.SetSelected(false);
+                SelectedUnits.Clear();
+            }
         }
 
-        if (Input.GetMouseButton(0))
+        if (isMouseDown)
         {
-            endPos = Input.mousePosition;
-            Vector2 size = endPos - startPos;
-            selectionBox.anchoredPosition = startPos;
-            selectionBox.sizeDelta = new Vector2(Mathf.Abs(size.x), Mathf.Abs(size.y));
+            if (Vector2.Distance(Input.mousePosition, mouseStartPos) > 10 && !isDragging)
+            {
+                isDragging = true;
+                selectionBox.gameObject.SetActive(true);
+            }
+
+            if (isDragging)
+            {
+                float boxWidth = Input.mousePosition.x - mouseStartPos.x;
+                float boxHeight = Input.mousePosition.y - mouseStartPos.y;
+
+                selectionBox.sizeDelta = new Vector2(Mathf.Abs(boxWidth), Mathf.Abs(boxHeight));
+                selectionBox.anchoredPosition = (mouseStartPos + (Vector2)Input.mousePosition) / 2;
+            }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            SelectUnitsInRectangle();
+            if (isDragging)
+            {
+                SelectUnits();
+            }
+
+            isMouseDown = false;
+            isDragging = false;
             selectionBox.gameObject.SetActive(false);
         }
     }
 
-    private void SelectUnitsInRectangle()
+    private void SelectUnits()
     {
         SelectedUnits.Clear();
-        Unit[] allUnits = Object.FindObjectsByType<Unit>(FindObjectsSortMode.None); // Reemplazo de método obsoleto  
 
-        Vector2 min = Vector2.Min(startPos, endPos);
-        Vector2 max = Vector2.Max(startPos, endPos);
+        Vector2 min = Vector2.Min(mouseStartPos, Input.mousePosition);
+        Vector2 max = Vector2.Max(mouseStartPos, Input.mousePosition);
+
+        Unit[] allUnits = Object.FindObjectsByType<Unit>(FindObjectsSortMode.None);
 
         foreach (var unit in allUnits)
         {
             Vector2 screenPos = Camera.main.WorldToScreenPoint(unit.transform.position);
-            if (screenPos.x > min.x && screenPos.x < max.x && screenPos.y > min.y && screenPos.y < max.y)
+
+            if (screenPos.x >= min.x && screenPos.x <= max.x &&
+                screenPos.y >= min.y && screenPos.y <= max.y)
             {
                 SelectedUnits.Add(unit);
                 unit.SetSelected(true);
