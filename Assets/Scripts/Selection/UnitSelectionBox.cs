@@ -10,7 +10,9 @@ public class UnitSelectionBox : MonoBehaviour
     private bool isMouseDown = false;
     private bool isDragging = false;
 
-    public List<Unit> SelectedUnits { get; private set; } = new List<Unit>();
+
+    public static List<Unit> SelectedUnits = new List<Unit>();
+
 
     void Update()
     {

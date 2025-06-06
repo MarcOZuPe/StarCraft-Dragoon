@@ -5,7 +5,8 @@ public class Unit : MonoBehaviour
 {
     [SerializeField] private GameObject selectionCircle;
     private NavMeshAgent agent;
-   
+    [SerializeField] private FactionType faction;
+    public FactionType GetFaction() => faction;
 
     void Awake()
     {
