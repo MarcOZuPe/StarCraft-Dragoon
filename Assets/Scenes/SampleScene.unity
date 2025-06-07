@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 105496850}
   - component: {fileID: 105496848}
+  - component: {fileID: 105496851}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -164,6 +165,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &105496851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105496847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bc0d7ae93669f6429fe23a4623d42e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &128401793
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,7 +692,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1765394582}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -751,8 +767,20 @@ PrefabInstance:
       value: Dragoon-bot
       objectReference: {fileID: 0}
     - target: {fileID: 3884853637542546288, guid: afc89a2ac7f685945a92b63d73482b39, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3884853637542546288, guid: afc89a2ac7f685945a92b63d73482b39, type: 3}
       propertyPath: m_TagString
       value: Allies
+      objectReference: {fileID: 0}
+    - target: {fileID: 6378234087291243955, guid: afc89a2ac7f685945a92b63d73482b39, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195046163170794560, guid: afc89a2ac7f685945a92b63d73482b39, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -776,6 +804,14 @@ PrefabInstance:
     - target: {fileID: 1271387131118215090, guid: ffe7c782ae87a774894f2c4cf8e6184f, type: 3}
       propertyPath: m_Name
       value: Dragoon-bot enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271387131118215090, guid: ffe7c782ae87a774894f2c4cf8e6184f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1532084517763002680, guid: ffe7c782ae87a774894f2c4cf8e6184f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2444525269984966414, guid: ffe7c782ae87a774894f2c4cf8e6184f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -816,6 +852,26 @@ PrefabInstance:
     - target: {fileID: 2444525269984966414, guid: ffe7c782ae87a774894f2c4cf8e6184f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992468942074867379, guid: ffe7c782ae87a774894f2c4cf8e6184f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.08295545
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992468942074867379, guid: ffe7c782ae87a774894f2c4cf8e6184f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992468942074867379, guid: ffe7c782ae87a774894f2c4cf8e6184f, type: 3}
+      propertyPath: m_Color.r
+      value: 0.87058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 5158005092733110402, guid: ffe7c782ae87a774894f2c4cf8e6184f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991735770840439153, guid: ffe7c782ae87a774894f2c4cf8e6184f, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

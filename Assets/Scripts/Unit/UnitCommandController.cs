@@ -8,10 +8,12 @@ public class UnitCommandController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1)) // clic derecho
         {
-           
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mouseWorldPos.x, mouseWorldPos.y); // UNT0034 fix: Explicitly convert Vector3 to Vector2
+            Debug.Log(mousePos2D);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero, Mathf.Infinity, unitLayer);
             Debug.Log("disparo");
-            if (Physics.Raycast(ray, out RaycastHit hit, 100f, unitLayer))
+            if (hit.collider != null)
             {
                 Unit targetUnit = hit.collider.GetComponent<Unit>();
 
@@ -28,8 +30,8 @@ public class UnitCommandController : MonoBehaviour
                         {
                             UnitAttack attack = selected.GetComponent<UnitAttack>();
                             if (attack != null)
-                                
-                            attack.StartAttack(targetUnit);
+
+                                attack.StartAttack(targetUnit);
                         }
                     }
                 }

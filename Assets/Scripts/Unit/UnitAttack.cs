@@ -32,7 +32,7 @@ public class UnitAttack : MonoBehaviour
             var myFaction = selfUnit.GetFaction();
             var targetFaction = target.GetFaction();
             var rel = FactionRelations.GetRelationship(myFaction, targetFaction);
-
+            Debug.Log("si es enemigo ");
             if (rel == RelationshipType.Enemy)
             {
                 Shoot();
